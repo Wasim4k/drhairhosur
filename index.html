@@ -2063,15 +2063,15 @@ left:0;
         <form class="appt-card row g-3" id="appointmentForm">
           <div class="col-md-6">
             <label class="form-label">Full Name</label>
-            <input type="text" class="form-control" placeholder="Your name" required>
+            <input type="text" class="form-control" placeholder="Your name" id="name" required>
           </div>
           <div class="col-md-6">
             <label class="form-label">Phone Number</label>
-            <input type="tel" class="form-control" placeholder="+91 00000 00000" required>
+            <input type="tel" class="form-control" placeholder="+91 00000 00000" id="phone" required>
           </div>
           <div class="col-md-6">
             <label class="form-label">Treatment</label>
-            <select class="form-select" required>
+            <select class="form-select" id="treatment" required>
               <option value="" selected disabled>Select a treatment</option>
               <option>Hair Transplant</option>
               <option>PRP Therapy</option>
@@ -2093,11 +2093,11 @@ left:0;
           </div>
           <div class="col-md-6">
             <label class="form-label">Preferred Date</label>
-            <input type="date" class="form-control" required>
+            <input type="date" class="form-control" id="date" required>
           </div>
           <div class="col-12">
             <label class="form-label">Message</label>
-            <textarea class="form-control" rows="3" placeholder="Tell us briefly about your concern"></textarea>
+            <textarea class="form-control" rows="3" id="message" placeholder="Tell us briefly about your concern"></textarea>
           </div>
           <div class="col-12 mt-3">
             <button type="submit" class="btn btn-gold w-100 w-md-auto px-5">Book Appointment</button>
@@ -2408,6 +2408,38 @@ if (sliderRange && afterImg && sliderHandle) {
       });
     }
   });
+</script>
+
+<script>
+document.getElementById("appointmentForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const treatment = document.getElementById("treatment").value;
+    const date = document.getElementById("date").value;
+    const message = document.getElementById("message").value;
+
+    const whatsappNumber = "8148042091";
+
+    const text =
+`*📅 New Appointment Request*
+
+👤 Name: ${name}
+📱 Phone: ${phone}
+💉 Treatment: ${treatment}
+📆 Preferred Date: ${date}
+
+📝 Message:
+${message}`;
+
+    window.open(
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`,
+        "_blank"
+    );
+
+});
 </script>
 </body>
 </html>
